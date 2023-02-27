@@ -12,7 +12,7 @@ app = FastAPI()
 
 @app.post("/OCR/")
 async def image_ocr(target_lang, file: UploadFile = File(...)):
-    file_location = f"files/{file.filename}"
+    file_location = f"{file.filename}"
     with open(file_location, "wb+") as file_object:
         file_object.write(file.file.read())
 
