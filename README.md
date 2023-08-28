@@ -1,7 +1,7 @@
 <div align=center> 
   <img src="https://img.shields.io/badge/C-007396?style=for-the-badge&logo=c&logoColor=white"> 
-  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c++%2B%2B&logoColor=white">
-  <img src="https://img.shields.io/badge/C#-3776AB?style=for-the-badge&logo=c#&logoColor=white"> 
+  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white">
+  <img src="https://img.shields.io/badge/C#-3776AB?style=for-the-badge&logo=c&logoColor=white"> 
   <br>
   
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
