@@ -58,26 +58,35 @@ CHAR_INDICES = {k: {c: i for i, c in enumerate(v)}
                 for k, v in CHAR_LISTS.items()}
 
 
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+
 @app.post("/noisereduce/")
 async def noisereduce(file: UploadFile = File(...)):
-    # 파일 저장
+    # 임시 파일 경로 설정
     file_path = f"temp_{file.filename}"
+    # 파일 저장
     with open(file_path, "wb") as f:
         f.write(file.file.read())
 
     # 오디오 파일 로드
-    audio, sr = librosa.load(file_path, sr=None)
+    audio, sr = sf.read(file_path)
 
-    # 잡음 제거 (노이즈 제거에 사용되는 라이브러리에 따라 다를 수 있음)
+    # 잡음 제거
     reduced_noise = nr.reduce_noise(audio, sr)
 
-    # WAV 파일로 저장
+    # 출력 파일 이름 설정
     output_file = "noise_reduced.wav"
+    # 잡음이 제거된 파일 저장
     sf.write(output_file, reduced_noise, sr)
 
+    # 임시 파일 삭제
     os.remove(file_path)
 
-    return FileResponse(output_file, media_type="audio/wav")
+    # 잡음이 제거된 wav 파일 반환
+    return FileResponse(output_file, media_type="audio/wav", filename=output_file)
 
 
 @app.post("/speechtotext/")
